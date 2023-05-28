@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenidoQCambia %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/busq_editorial.css' %}">
+
+    <form action="{% url 'BuscarEditorial' %}" method="GET">{% csrf_token %}
+        <p>Nombre de la editorial de libros que queres buscar: <input type="text" name="editorial" id=""></p>
+        <button type="submit"> Buscar </button>
+    </form>
+{% endblock contenidoQCambia %}

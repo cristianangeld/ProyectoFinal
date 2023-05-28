@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenidoQCambia %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/buscar_libros.css' %}">
+
+  <h1>Buscar Libros</h1>
+
+  <div class="container">
+    <form method="GET" action="{% url 'BusquedaLibros' %}">
+      <div class="form-group">
+        <label>Buscar por:</label>
+        <div class="btn-group" role="group">
+            {% url 'BuscarNombre' as url %}
+            <button type="button" onclick="window.location.href='{{ url }}'">NOMBRE</button>
+            {% url 'BuscarGenero' as url %}
+            <button type="button" onclick="window.location.href='{{ url }}'">GÉNERO</button>
+            {% url 'BuscarEditorial' as url %}
+            <button type="button" onclick="window.location.href='{{ url }}'">EDITORIAL</button>
+            {% url 'BuscarValoracion' as url %}
+            <button type="button" onclick="window.location.href='{{ url }}'">VALORACIÓN</button>
+        </div>
+      </div>
+      {% csrf_token %}
+    </form>
+  </div>
+{% endblock %}

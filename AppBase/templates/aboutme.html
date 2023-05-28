@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenidoQCambia %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/aboutme.css' %}">
+
+    <h1>Hola! Soy Cristian Duran</h1>
+
+    <img class="center" height="400px" src="{% static 'css/foto cv.jpeg' %}" alt="Imagen saludo">
+
+    <body>
+    <h5>Les voy a contar sobre mi!</h5>
+    <p>Nací en 1985, soy de Buenos Aires, Argentina y vivi en varias ciudades.</p>
+	<p>Soy repartidor en una empresa, un rubro totalmente distinto a este</p>
+	<p>Ahora estoy empezando a programar, algo que siempre me gusto mucho y tambien el aprender como funcionan las cosas</p>
+	<p>Siempre quise diseñar paginas bew, por eso me anoté en programación para aprender como funcionan los lenguajes y la lógica y así seguir especializandome para</p>
+    <p>Estoy termminando este curso orientado al desarrollo web en Coderhouse</p>
+    <p>Les mando saludos y muchas gracias por todo</p>
+
+    <div style="margin-top: 20px;"></div>
+    <a href="https://github.com/cristianangeld    " target="_blank"><button>Visitar Github</button></a>
+    </div>
+
+    <div style="margin-top: 20px;">
+        {% url 'Inicio' as url %}
+        <button class="center" type="button" onclick="window.location.href='{{ url }}'">Volver a la Home</button>
+    </div>
+{% endblock contenidoQCambia %}

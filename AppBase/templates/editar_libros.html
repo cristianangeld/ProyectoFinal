@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenidoQCambia %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/editar_libros.css' %}">
+
+    <h1>Editar Libro</h1>
+
+    <form action="{% url 'EditarLibro' id %}" method="POST">{% csrf_token %}
+        {{mi_formulario.as_p}}
+
+        <input type="submit" value="Actualizar">
+    </form>
+{% endblock contenidoQCambia %}
