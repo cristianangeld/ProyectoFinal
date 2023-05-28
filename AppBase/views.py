@@ -17,21 +17,28 @@ def inicio(request):
 def AboutMe(request):
     return render(request, "aboutme.html")
     
-#1er Círculo Inicio!!
+#1er Círculo Inicio!!  
 @login_required   
 def agregar_libro(request):
     if request.method == 'POST':
         mi_formulario = LibrosForm(request.POST)
         if mi_formulario.is_valid():
             data = mi_formulario.cleaned_data
-            libro = Libro(nombre=request.POST['nombre'], fecha_salida=request.POST['fecha_salida'], genero=request.POST['genero'], empresa=request.POST['empresa'], descripcion=request.POST['descripcion'], valoracion=request.POST['valoracion'],)
+            libro = Libro(
+                nombre=data['nombre'],
+                fecha_publicacion=data['fecha_publicacion'],
+                genero=data['genero'],
+                editorial=data['editorial'],
+                descripcion=data['descripcion'],
+                valoracion=data['valoracion']
+            )
             libro.save()
-            return render(request, "inicio.html", {"mensaje": "Muy bien agregaste tu videojuego :D"})
+            return render(request, "inicio.html", {"mensaje": "¡Muy bien, agregaste tu libro!"})
         else:
-            return render(request, "inicio.html", {"mensaje": "Formulario invalido"})
+            return render(request, "inicio.html", {"mensaje": "Formulario inválido"})
     else:
         mi_formulario = LibrosForm()
-        return render(request, "agregar_videojuego.html", {"mi_formulario": mi_formulario})
+        return render(request, "agregar_libro.html", {"mi_formulario": mi_formulario})
 
 @login_required  
 def lista_libros(request):

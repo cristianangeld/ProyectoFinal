@@ -18,7 +18,7 @@ class Libro(models.Model):
     
     
     def __str__(self):
-        return f"{self.titulo} - {self.genero} - {self.editorial}"
+        return f"{self.nombre} - {self.genero} - {self.editorial}"
 
 class Resena(models.Model):
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -38,7 +38,7 @@ class Avatar(models.Model):
 class Tema(models.Model):
     nombre = models.CharField(max_length=200)
     descripcion = models.TextField()
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_publicacion = models.DateTimeField(auto_now_add=True)
     creador = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
@@ -46,7 +46,7 @@ class Tema(models.Model):
 
 class Comentario(models.Model):
     contenido = models.TextField()
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_publicacion = models.DateTimeField(auto_now_add=True)
     creador = models.ForeignKey(User, on_delete=models.CASCADE)
     tema = models.ForeignKey(Tema, on_delete=models.CASCADE, related_name='comentarios')
     

@@ -12,12 +12,12 @@ class LibroTestCase(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user('testuser', 'test@example.com', 'testpassword')
-        self.libro = Libro.objects.create(titulo='Libro de Prueba', fecha_publicacion='2022-01-01', genero='Aventura', editorial='EditorialX', descripcion='Un libro de prueba', valoracion=4)
+        self.libro = Libro.objects.create(nombre='Libro de Prueba', fecha_publicacion='2022-01-01', genero='Aventura', editorial='EditorialX', descripcion='Un libro de prueba', valoracion=4)
 
     def test_agregar_libro(self):
         self.client.login(username='testuser', password='testpassword')
         url = reverse('agregar_libro')
-        data = {'titulo': 'Nuevo Libro', 'fecha_publicacion': '2023-04-30', 'genero': 'Cienciaficcion', 'editorial': 'EditorialY', 'descripcion': 'Un libro nuevo', 'valoracion': 3}
+        data = {'nombre': 'Nuevo Libro', 'fecha_publicacion': '2023-04-30', 'genero': 'Cienciaficcion', 'editorial': 'EditorialY', 'descripcion': 'Un libro nuevo', 'valoracion': 3}
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Muy bien agregaste tu libro")
@@ -39,7 +39,7 @@ class LibroTestCase(TestCase):
     def test_editar_libro(self):
         self.client.login(username='testuser', password='testpassword')
         url = reverse('editar_libro', args=[self.libro.id])
-        data = {'titulo': 'Libro Modificado', 'fecha_publicacion': '2022-06-01', 'genero': 'Aventura', 'editorial': 'EditorialX', 'descripcion': 'Un libro modificado', 'valoracion': 5}
+        data = {'nombre': 'Libro Modificado', 'fecha_publicacion': '2022-06-01', 'genero': 'Aventura', 'editorial': 'EditorialX', 'descripcion': 'Un libro modificado', 'valoracion': 5}
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Cambios realizados")
@@ -76,7 +76,7 @@ class TestResenasViews(TestCase):
         self.assertEquals(response.status_code, 302)
         self.assertEquals(Resena.objects.last().autor, 'Gabriel García Márquez')
         self.assertEquals(Resena.objects.last().contenido, 'Esta es otra reseña de prueba')
-        self.assertEquals(Resena.objects.last().videojuego, 'Fortnite')
+        self.assertEquals(Resena.objects.last().libro, 'Cien años de soledad')
     
     def test_eliminar_resena_POST(self):
         response = self.client.post(self.eliminar_resena_url)

@@ -12,7 +12,7 @@
         <li>
             <form method="get" action="{% url 'ListaLibros' %}">
                 <input type="hidden" name="orden" value="lanzamiento" />
-                <button type="submit">Fecha de lanzamiento</button>
+                <button type="submit">Fecha de publicacion</button>
             </form>
         </li>
         <li>
@@ -27,7 +27,7 @@
         <thead>
             <tr>
                 <th class="columna-nombre">Nombre</th>
-                <th class="columna-fecha-salida">Fecha de salida</th>
+                <th class="columna-fecha-publicacion">Fecha de salida</th>
                 <th class="columna-genero">Género</th>
                 <th class="columna-editorial">Editorial</th>
                 <th class="columna-descripcion">Descripción</th>
@@ -39,7 +39,7 @@
             {% for libro in libros %}
                 <tr>
                     <td>{{ libro.nombre }}</td>
-                    <td>{{ libro.fecha_salida }}</td>
+                    <td>{{ libro.fecha_publicacion }}</td>
                     <td>{{ libro.genero }}</td>
                     <td>{{ libro.editorial }}</td>
                     <td>{{ libro.descripcion }}</td>
