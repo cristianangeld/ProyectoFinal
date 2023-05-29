@@ -26,7 +26,7 @@ class Resena(models.Model):
     libro = models.ForeignKey(Libro, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"{self.autor} - {self.libro.titulo}"
+        return f"{self.autor} - {self.libro.nombre}"
 
 class Avatar(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -42,7 +42,7 @@ class Tema(models.Model):
     creador = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"{self.creador} - {self.titulo}"
+        return f"{self.creador} - {self.nombre}"
 
 class Comentario(models.Model):
     contenido = models.TextField()
